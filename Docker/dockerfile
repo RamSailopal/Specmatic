@@ -1,0 +1,12 @@
+FROM ubuntu
+RUN apt update && \
+    apt install -y default-jdk wget git && \
+    apt clean
+WORKDIR /tmp
+ADD https://github.com/znsio/specmatic/releases/download/0.74.0/specmatic.jar /tmp/specmatic.jar
+RUN chmod +x /tmp/specmatic.jar
+WORKDIR /home/Example
+ENTRYPOINT ["java", "-jar", "/tmp/specmatic.jar"]
+
+
+

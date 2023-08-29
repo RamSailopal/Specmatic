@@ -1,0 +1,22 @@
+name: Build and push image
+on:
+  push:
+    branches: [main]
+  pull_request:
+jobs:
+  Run_IaC:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Build the image
+        run: |
+          cd Docker
+          docker build --rm --no-cache -t ramb0/specmatic .
+      - name: Push the image
+        env:
+          DOCKER_PASS: ${{ secrets.DOCKER_PASSWORD }}
+          DOCKER_USER: ${{ secrets.DOCKER_USERNAME }}
+        run: |
+          docker login -u="$DOCKER_USER" -p="$DOCKER_PASS"
+          docker push ramb0/specmatic

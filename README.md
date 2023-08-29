@@ -1,5 +1,7 @@
 # A docker image for Specmatic
 
+![example workflow](https://github.com/RamSailopal/Specmatic/actions/workflows/docker.yml/badge.svg)
+
 This repo contains a Docker build file for Specmatic. It also contains an example OpenAPI document.
 
 To run with the example:
